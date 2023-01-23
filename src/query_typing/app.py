@@ -1,4 +1,4 @@
-from query_typing.model import (
+from model import (
     DepartmentModel,
     DepartmentQuery,
     EmployeeModel,
