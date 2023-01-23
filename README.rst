@@ -5,6 +5,7 @@ SELECT e.id, e.name, (WITH RECURSIVE all_deps AS(
         FROM departments 
         WHERE id = e.department_id
     UNION ALL
+    
     SELECT d.id, d.parent_id, d.name
         FROM departments d 
         INNER JOIN all_deps
