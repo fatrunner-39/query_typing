@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, TypeVar, Generic, Type
+from typing import List, TypeVar, Generic, Type, Any
 
 
 @dataclass
@@ -15,12 +15,10 @@ class QueryBase(Generic[ModelType]):
         pass
 
     def __init_subclass__(cls) -> None:
-        super().__init_subclass__()
-
-        class NotFoundError(QueryBase.NotFoundError):
+        class MyNotFoundError(QueryBase.NotFoundError):
             pass
-
-        cls.NotFoundError: Type["QueryBase.NotFoundError"] = NotFoundError
+        
+        cls.NotFoundError = MyNotFoundError #type: ignore
 
     def __init__(self, models:List[ModelType]) -> None:
         self.models = models
